@@ -27,14 +27,18 @@ export default function HomePage({ searchParams }: PageProps<'/'>) {
       </Suspense>
       <DropComposer />
       <Suspense fallback={<DropListSkeleton />}>
-        <Crossfade>
-          {searchParams.then(sp => {
-            const tab = parseTab(sp.tab);
-            const page = parsePage(sp.page);
-            return tab === 'discover' ? <DiscoverFeed page={page} /> : <Feed page={page} />;
-          })}
-        </Crossfade>
+        {searchParams.then(sp => {
+          const tab = parseTab(sp.tab);
+          const page = parsePage(sp.page);
+          return (
+            <Suspense key={tab} fallback={<DropListSkeleton />}>
+              <Crossfade>
+                {tab === 'discover' ? <DiscoverFeed page={page} /> : <Feed page={page} />}
+              </Crossfade>
+            </Suspense>
+          );
+        })}
       </Suspense>
-    </div>
+    </div >
   );
 }
