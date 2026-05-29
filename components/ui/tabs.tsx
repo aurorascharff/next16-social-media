@@ -1,6 +1,6 @@
 'use client';
 
-import { useOptimistic, useTransition } from 'react';
+import { addTransitionType, useOptimistic, useTransition } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 
@@ -20,6 +20,7 @@ export function Tabs<T extends string>({ tabs, active, action, label = 'Sections
   function handleSelect(value: T) {
     if (value === optimisticActive) return;
     startTransition(async () => {
+      addTransitionType('tabChange');
       setOptimisticActive(value);
       await action(value);
     });

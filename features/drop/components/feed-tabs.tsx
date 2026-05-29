@@ -3,7 +3,6 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Tabs } from '@/components/ui/tabs';
 import type { Route } from 'next';
-import { addTransitionType } from 'react';
 
 type FeedTab = 'following' | 'discover';
 
@@ -27,7 +26,6 @@ export function FeedTabs() {
       active={active}
       action={value => {
         router.push((value === 'following' ? '/' : '/?tab=discover') as Route);
-        addTransitionType('tabChange');
       }}
       label="Feed sections"
     />

@@ -47,11 +47,16 @@ export default function ProfilePage({ params, searchParams }: PageProps<'/u/[han
         </Crossfade>
       </Suspense>
       <Suspense fallback={<DropListSkeleton />}>
-        <Crossfade>
-          {Promise.all([params, searchParams]).then(([{ handle }, sp]) => (
-            <ProfileFeed handle={handle} tab={parseTab(sp.tab)} />
-          ))}
-        </Crossfade>
+        {Promise.all([params, searchParams]).then(([{ handle }, sp]) => {
+          const tab = parseTab(sp.tab);
+          return (
+            <Suspense key={tab} fallback={<DropListSkeleton />}>
+              <Crossfade>
+                <ProfileFeed handle={handle} tab={tab} />
+              </Crossfade>
+            </Suspense>
+          )
+        })}
       </Suspense>
     </div>
   );
