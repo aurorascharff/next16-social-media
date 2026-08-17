@@ -28,7 +28,7 @@
     "dotenv": "^17.4.2",
     "geist": "^1.7.0",
     "lucide-react": "^1.8.0",
-    "next": "16.3.1-canary.13",
+    "next": "https://vercel-packages.vercel.app/next/commits/e0fe5af836a1e222e6823599d8c98fac00ac2cd8/next",
     "next-themes": "^0.4.6",
     "pg": "^8.21.0",
     "prisma": "^7.8.0",
@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "@next/playwright": "16.3.0-preview.10",
+    "@next/swc-darwin-arm64": "16.3.0-canary.93",
     "@playwright/test": "^1.60.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",

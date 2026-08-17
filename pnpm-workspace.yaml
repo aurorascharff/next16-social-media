@@ -16,3 +16,4 @@ onlyBuiltDependencies:
   - prisma
   - sharp
   - unrs-resolver
+blockExoticSubdeps: false
