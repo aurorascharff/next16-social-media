@@ -1,6 +1,6 @@
 import 'server-only';
 
-import { cacheLife, cacheTag } from 'next/cache';
+import { cacheLife, cacheTag, unstable_navigation as navigation } from 'next/cache';
 import { notFound } from 'next/navigation';
 import { isSlowEnabled } from '@/components/demo/demo-slow';
 import { FEED_PAGE_SIZE } from '@/features/drop/drop-constants';
@@ -107,7 +107,14 @@ async function getDropCached(id: string, slow: boolean) {
 }
 
 export async function getReplies(dropId: string) {
-  await delay(1800, await isSlowEnabled());
+  await navigation();
+  return getRepliesCached(dropId, await isSlowEnabled());
+}
+
+async function getRepliesCached(dropId: string, slow: boolean) {
+  'use cache';
+  cacheTag(`replies:${dropId}`);
+  await delay(1800, slow);
   const parent = await prisma.drop.findUnique({
     select: { authorHandle: true },
     where: { id: dropId },

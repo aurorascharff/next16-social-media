@@ -16,7 +16,7 @@ test.describe('Drop page (/drop/[id])', () => {
     });
   });
 
-  test('client navigation shows the runtime-prefetched drop and replies', async ({ page }) => {
+  test('client navigation defers replies until navigation', async ({ page }) => {
     await page.goto('/');
     const link = page.locator('main article a[href^="/drop/"]').first();
     await link.waitFor({ state: 'visible', timeout: 15000 });
@@ -29,6 +29,9 @@ test.describe('Drop page (/drop/[id])', () => {
       await expect(page.getByRole('heading', { level: 1, name: 'Drop' })).toBeVisible();
       await expect(page.locator('main article').first()).toBeVisible();
       await expect(page.getByRole('heading', { level: 2, name: 'Replies' })).toBeVisible();
+      await expect(page.getByTestId('replies')).toHaveCount(0);
     });
+
+    await expect(page.getByTestId('replies')).toBeVisible();
   });
 });

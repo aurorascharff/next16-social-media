@@ -182,6 +182,7 @@ export async function postReply(parentId: string, formData: FormData) {
     revalidateTag(`notifications:${parent.authorHandle}`, 'max');
   }
   updateTag(`drop-${id}`);
+  updateTag(`replies:${id}`);
   refresh();
   return { ok: true as const, reply };
 }

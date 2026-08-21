@@ -5,12 +5,13 @@ import { getReplies } from '@/features/drop/drop-queries';
 
 export async function Replies({ id }: { id: string }) {
   const replies = await getReplies(id);
-  if (replies.length === 0) {
-    return <EmptyState title="No replies yet" body="Be the first to reply." />;
-  }
   return (
-    <div>
-      <DropList drops={replies} compact />
+    <div data-testid="replies">
+      {replies.length === 0 ? (
+        <EmptyState title="No replies yet" body="Be the first to reply." />
+      ) : (
+        <DropList drops={replies} compact />
+      )}
     </div>
   );
 }
