@@ -12,6 +12,7 @@ const DEFAULT_HANDLE = 'aurora';
 
 export async function getCurrentUserHandle(): Promise<string> {
   'use cache: private';
+  cacheLife({ stale: Infinity });
 
   const store = await cookies();
   return store.get(SESSION_COOKIE)?.value ?? DEFAULT_HANDLE;
@@ -27,6 +28,7 @@ export async function verifyAuth(): Promise<string> {
 export async function getCurrentUser() {
   'use cache: private';
   cacheTag('current-user');
+  cacheLife({ stale: Infinity });
 
   const handle = await getCurrentUserHandle();
   const user = await prisma.user.findUnique({ where: { handle } });
