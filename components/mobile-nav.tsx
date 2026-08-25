@@ -10,42 +10,44 @@ const mobileTabClass =
 
 export function MobileTabBar() {
   return (
-    <nav
-      aria-label="Primary"
-      style={{ viewTransitionName: 'mobile-nav' }}
-      className="border-divider/70 dark:border-divider-dark/70 sticky bottom-0 z-40 flex shrink-0 border-t bg-white pr-[env(safe-area-inset-right)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] sm:hidden dark:bg-black"
-    >
-      <NavLink href="/" aria-label="Home" className={mobileTabClass}>
-        <Home className="h-5 w-5" />
-        <span>Home</span>
-      </NavLink>
-      <NavLink href="/search" aria-label="Search" className={mobileTabClass}>
-        <Search className="h-5 w-5" />
-        <span>Search</span>
-      </NavLink>
-      <NavLink href={'/notifications' as Route} aria-label="Activity" className={mobileTabClass}>
-        <Bell className="h-5 w-5" />
-        <span>Activity</span>
-      </NavLink>
-      <NavLink href="/bookmarks" aria-label="Saved" className={mobileTabClass}>
-        <Bookmark className="h-5 w-5" />
-        <span>Saved</span>
-      </NavLink>
-      <Suspense
-        fallback={
-          <NavLinkSkeleton className={mobileTabClass}>
-            <User className="h-5 w-5" />
-            <span>Profile</span>
-          </NavLinkSkeleton>
-        }
+    <div className="h-[calc(3.625rem+env(safe-area-inset-bottom))] shrink-0 sm:hidden">
+      <nav
+        aria-label="Primary"
+        style={{ viewTransitionName: 'mobile-nav' }}
+        className="border-divider/70 dark:border-divider-dark/70 fixed inset-x-0 bottom-0 z-40 flex border-t bg-white pr-[env(safe-area-inset-right)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] sm:hidden dark:bg-black"
       >
-        {getCurrentUserHandle().then(handle => (
-          <NavLink href={`/u/${handle}` as Route} aria-label="Profile" className={mobileTabClass}>
-            <User className="h-5 w-5" />
-            <span>Profile</span>
-          </NavLink>
-        ))}
-      </Suspense>
-    </nav>
+        <NavLink href="/" aria-label="Home" className={mobileTabClass}>
+          <Home className="h-5 w-5" />
+          <span>Home</span>
+        </NavLink>
+        <NavLink href="/search" aria-label="Search" className={mobileTabClass}>
+          <Search className="h-5 w-5" />
+          <span>Search</span>
+        </NavLink>
+        <NavLink href={'/notifications' as Route} aria-label="Activity" className={mobileTabClass}>
+          <Bell className="h-5 w-5" />
+          <span>Activity</span>
+        </NavLink>
+        <NavLink href="/bookmarks" aria-label="Saved" className={mobileTabClass}>
+          <Bookmark className="h-5 w-5" />
+          <span>Saved</span>
+        </NavLink>
+        <Suspense
+          fallback={
+            <NavLinkSkeleton className={mobileTabClass}>
+              <User className="h-5 w-5" />
+              <span>Profile</span>
+            </NavLinkSkeleton>
+          }
+        >
+          {getCurrentUserHandle().then(handle => (
+            <NavLink href={`/u/${handle}` as Route} aria-label="Profile" className={mobileTabClass}>
+              <User className="h-5 w-5" />
+              <span>Profile</span>
+            </NavLink>
+          ))}
+        </Suspense>
+      </nav>
+    </div>
   );
 }
