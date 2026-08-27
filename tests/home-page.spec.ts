@@ -11,7 +11,7 @@ test.describe('Home page (/)', () => {
     });
   });
 
-  test('client navigation shows the runtime-prefetched feed', async ({ page }) => {
+  test('client navigation shows the feed resolved at prefetch time', async ({ page }) => {
     await page.goto('/bookmarks');
     const link = page.locator('aside a[aria-label="Home"]').first();
     await link.waitFor({ state: 'visible', timeout: 15000 });
