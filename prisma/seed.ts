@@ -170,7 +170,7 @@ const DROPS: SeedDrop[] = [
   },
   {
     authorHandle: 'aurora',
-    body: "Spent the day on how navigation feels. High-value links in Drop opt into runtime prefetch, so opening a drop or a profile is instant:\n\n```tsx\n<Link href={href} prefetch={true} />\n```\n\nBy the time you click, the next screen is already warm.",
+    body: "Spent the day on how navigation feels. High-value links in Drop resolve their data at prefetch time, so opening a drop or a profile is instant:\n\n```tsx\n<Link href={href} prefetch={true} />\n```\n\nBy the time you click, the next screen is already warm.",
     createdAt: new Date(now - 4 * hour),
     id: 'd7',
     likes: 1_540,
@@ -600,7 +600,7 @@ const REPLIES: SeedDrop[] = [
   },
   {
     authorHandle: 'halo',
-    body: 'Runtime prefetch on every route is the kind of thing you only notice when it is missing.',
+    body: 'Prefetching this aggressively is the kind of thing you only notice when it is missing.',
     createdAt: new Date(now - 9 * hour),
     id: 'r14',
     likes: 132,
@@ -611,7 +611,7 @@ const REPLIES: SeedDrop[] = [
   },
   {
     authorHandle: 'aurora',
-    body: 'Follow-up: the drop detail is runtime-prefetched, and the profile links only prefetch on hover so we do not prefetch the whole feed at once.',
+    body: 'Follow-up: the drop detail resolves at prefetch time, and the profile links only prefetch on hover so we do not prefetch the whole feed at once.',
     createdAt: new Date(now - 8 * hour),
     id: 'r15',
     likes: 264,

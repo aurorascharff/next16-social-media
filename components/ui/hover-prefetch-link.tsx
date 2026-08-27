@@ -9,9 +9,9 @@ type Props<T extends string = string> = Omit<React.ComponentProps<typeof Link>, 
   href: Route<T> | URL;
 };
 
-// A `<Link>` that defers its runtime prefetch until the user shows intent.
+// A `<Link>` that defers its prefetch until the user shows intent.
 // Until hover/focus it sits at the App Shell (`prefetch={null}`); intent upgrades
-// it to a full runtime prefetch so the click lands on warm content. Use for
+// it to a full prefetch so the click lands on warm content. Use for
 // low-intent list links (tags) so N of them don't each wake a server on render.
 export function HoverPrefetchLink<T extends string>({ href, onMouseEnter, onFocus, ...props }: Props<T>) {
   const [intent, setIntent] = useState(false);

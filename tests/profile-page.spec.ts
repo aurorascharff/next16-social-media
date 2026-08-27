@@ -12,7 +12,7 @@ test.describe('Profile page (/u/[handle])', () => {
     });
   });
 
-  test('client navigation shows the runtime-prefetched profile feed', async ({ page }) => {
+  test('client navigation shows the profile feed resolved at prefetch time', async ({ page }) => {
     await page.goto('/');
     const link = page.locator('aside a[aria-label="Profile"]').first();
     await link.waitFor({ state: 'visible', timeout: 15000 });
