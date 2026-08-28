@@ -22,6 +22,7 @@ export async function Drop({ drop, compact = false, repostedBy }: Props) {
   const interactions = await getUserDropInteractions();
   const href = `/drop/${drop.parentId ?? drop.id}` as Route;
   const isLong = drop.body.length > 280;
+  const isTruncated = isLong && !compact;
   const userState = {
     bookmarked: interactions.bookmarked.has(drop.id),
     liked: interactions.liked.has(drop.id),
@@ -51,8 +52,8 @@ export async function Drop({ drop, compact = false, repostedBy }: Props) {
               <RelativeTime date={drop.createdAt} />
             </span>
           </header>
-          <DropBody body={drop.body} compact={compact} truncate={isLong} />
-          {isLong ? (
+          <DropBody body={drop.body} compact={compact} truncate={isTruncated} />
+          {isTruncated ? (
             <PrefetchLink href={href} className="text-accent relative z-20 w-fit text-sm hover:underline">
               Show more
             </PrefetchLink>
