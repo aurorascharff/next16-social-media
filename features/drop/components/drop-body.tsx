@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { CodeBlock } from '@/components/ui/code-block';
 import { splitCode, tokenizeText, type Token } from '@/features/drop/drop-format';
+import { cn } from '@/lib/utils';
 import type { Route } from 'next';
 
 type Props = {
@@ -13,7 +14,7 @@ type Props = {
 export function DropBody({ body, compact = false, detail = false, truncate = false }: Props) {
   const segments = splitCode(body);
   return (
-    <div className="flex min-w-0 flex-col gap-2">
+    <div className={cn('flex min-w-0 flex-col gap-2', compact && 'relative z-20')}>
       {segments.map((segment, i) => {
         if (segment.type === 'code') {
           if (compact) return null;
