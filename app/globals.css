@@ -175,6 +175,7 @@
 ::view-transition-group(modal-backdrop),
 ::view-transition-group(account-menu),
 ::view-transition-group(demo-toolbar),
+::view-transition-group(page-header),
 ::view-transition-group(theme-toggle) {
   animation: none;
   z-index: 100;
@@ -194,6 +195,7 @@
 ::view-transition-old(account-menu),
 ::view-transition-new(account-menu),
 ::view-transition-new(demo-toolbar),
+::view-transition-new(page-header),
 ::view-transition-old(theme-toggle),
 ::view-transition-new(theme-toggle),
 ::view-transition-old(toaster),
@@ -203,7 +205,8 @@
 
 /* backdrop-blur elements: hide the old snapshot so two translucent layers don't stack */
 ::view-transition-old(modal-backdrop),
-::view-transition-old(demo-toolbar) {
+::view-transition-old(demo-toolbar),
+::view-transition-old(page-header) {
   display: none;
 }
 
