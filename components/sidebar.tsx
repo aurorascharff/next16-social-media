@@ -16,7 +16,7 @@ import { getAllUsers, getCurrentUser, getCurrentUserHandle } from '@/features/us
 import type { Route } from 'next';
 
 const sidebarLinkClass =
-  'flex items-center justify-center gap-4 rounded-lg p-2.5 text-base tracking-tight transition-colors lg:justify-start lg:px-3 not-aria-[current=page]:hover:bg-card dark:not-aria-[current=page]:hover:bg-card-dark aria-[current=page]:bg-accent/10 aria-[current=page]:text-accent aria-[current=page]:dark:bg-accent/15 aria-[current=page]:font-bold aria-[current=page]:dark:text-blue-400 aria-[current=page]:[&_svg]:stroke-[2.5]';
+  'flex items-center justify-center gap-4 rounded-lg p-2.5 text-base tracking-tight lg:justify-start lg:px-3 not-aria-[current=page]:hover:bg-card dark:not-aria-[current=page]:hover:bg-card-dark aria-[current=page]:bg-accent/10 aria-[current=page]:text-accent aria-[current=page]:dark:bg-accent/15 aria-[current=page]:font-bold aria-[current=page]:dark:text-blue-400 aria-[current=page]:[&_svg]:stroke-[2.5]';
 
 export function Sidebar() {
   return (
