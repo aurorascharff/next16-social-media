@@ -16,7 +16,12 @@ type Props<T extends string> = {
   indicatorName?: string;
 };
 
-export function Tabs<T extends string>({ tabs, active, label = 'Sections', indicatorName = 'tab-indicator' }: Props<T>) {
+export function Tabs<T extends string>({
+  tabs,
+  active,
+  label = 'Sections',
+  indicatorName = 'tab-indicator',
+}: Props<T>) {
   const [optimisticActive, setOptimisticActive] = useOptimistic(active);
   const [isPending, startTransition] = useTransition();
 
@@ -56,7 +61,10 @@ export function Tabs<T extends string>({ tabs, active, label = 'Sections', indic
               <span className="relative">{t.label}</span>
               {isCommitted ? (
                 <ViewTransition name={indicatorName} share="tab-underline">
-                  <span className="absolute inset-x-6 -bottom-px h-1 rounded-t-full bg-black dark:bg-white" aria-hidden />
+                  <span
+                    className="absolute inset-x-6 -bottom-px h-1 rounded-t-full bg-black dark:bg-white"
+                    aria-hidden
+                  />
                 </ViewTransition>
               ) : null}
             </PrefetchLink>

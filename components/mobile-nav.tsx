@@ -24,7 +24,7 @@ export function MobileTabBar() {
           <Search className="h-5 w-5" />
           <span>Search</span>
         </NavLink>
-        <NavLink href={'/notifications' as Route} aria-label="Activity" className={mobileTabClass}>
+        <NavLink href={'/activity'} aria-label="Activity" className={mobileTabClass}>
           <Bell className="h-5 w-5" />
           <span>Activity</span>
         </NavLink>

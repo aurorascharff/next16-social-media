@@ -4,7 +4,7 @@ import { EmptyState } from '@/components/ui/empty-state';
 import { PrefetchLink } from '@/components/ui/prefetch-link';
 import { RelativeTime } from '@/components/ui/relative-time';
 import { Skeleton } from '@/components/ui/skeleton';
-import { getNotifications } from '@/features/notifications/notifications-queries';
+import { getNotifications } from '@/features/activity/notifications-queries';
 import { UserAvatar, UserAvatarSkeleton } from '@/features/user/components/user-avatar';
 import { getUserByHandle } from '@/features/user/user-queries';
 import type { Notification, NotificationKind } from '@/types/notification';

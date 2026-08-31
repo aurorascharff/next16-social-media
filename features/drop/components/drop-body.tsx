@@ -29,8 +29,8 @@ export function DropBody({ body, compact = false, detail = false, truncate = fal
             key={i}
             className={
               detail
-                ? 'wrap-anywhere text-[17px] leading-relaxed text-black dark:text-white'
-                : `wrap-anywhere text-[15px] leading-snug text-black dark:text-white ${truncate ? 'line-clamp-5' : ''}`
+                ? 'text-[17px] leading-relaxed wrap-anywhere text-black dark:text-white'
+                : `text-[15px] leading-snug wrap-anywhere text-black dark:text-white ${truncate ? 'line-clamp-5' : ''}`
             }
           >
             {renderText(segment.text)}

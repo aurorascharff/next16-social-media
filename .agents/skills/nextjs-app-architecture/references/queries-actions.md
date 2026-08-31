@@ -18,7 +18,7 @@ export async function getFeed(userId: string) {
 
 Use [`cache()`](https://react.dev/reference/react/cache) from React only for **request-level deduplication** when the same dynamic query is called multiple times with the same arguments in one render. Highest-value cases: a session/user lookup used by many queries, or a shared expensive read used by metadata + page sections. Don't wrap every query "just in case" — it adds indirection and can hide when data is intentionally dynamic.
 
-`cache()` dedups within a request; `'use cache'` + `cacheTag` (Cache Components) shares results *across* requests. Don't add React `cache()` to a function only because it already uses `'use cache'`; that is double-caching unless you have a separate, proven same-request duplication problem. See `references/cache-components.md`.
+`cache()` dedups within a request; `'use cache'` + `cacheTag` (Cache Components) shares results _across_ requests. Don't add React `cache()` to a function only because it already uses `'use cache'`; that is double-caching unless you have a separate, proven same-request duplication problem. See `references/cache-components.md`.
 
 ## Actions
 

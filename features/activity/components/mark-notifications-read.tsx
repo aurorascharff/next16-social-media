@@ -10,7 +10,7 @@ export function MarkNotificationsRead() {
   useEffect(() => {
     if (count > 0) {
       void mutate(UNREAD_KEY, 0, { revalidate: false });
-      void fetch('/api/notifications/read', { keepalive: true, method: 'POST' }).catch(() => {});
+      void fetch('/api/activity/read', { keepalive: true, method: 'POST' }).catch(() => {});
     }
   }, [count, mutate]);
   return null;

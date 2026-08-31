@@ -11,7 +11,7 @@ metadata:
 
 A workflow for building and refactoring Next.js 16+ App Router apps so they follow one consistent, feature-sliced RSC architecture.
 
-**Follow the workflow below step by step** — it produces the invariants by construction. Load the reference a step names for the decision it depends on. Get framework *mechanics* (API signatures, config options, hook contracts) from the linked docs — don't restate or improvise them.
+**Follow the workflow below step by step** — it produces the invariants by construction. Load the reference a step names for the decision it depends on. Get framework _mechanics_ (API signatures, config options, hook contracts) from the linked docs — don't restate or improvise them.
 
 ## Invariants (what every change must satisfy)
 

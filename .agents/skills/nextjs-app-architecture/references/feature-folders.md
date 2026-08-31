@@ -103,6 +103,6 @@ lib/                  # Utilities and cohesive non-domain subsystems
 - **`components/ui/`** — primitives. Low-level building blocks and action-prop components.
 - **`components/theme/`** — theme provider and toggle, paired.
 - **Top-level files** (`site-header.tsx`, `auth-gate.tsx`, `poller.tsx`) — app-shell singletons used once each. No `common/` folder — "common" is not a category. If a component is used everywhere it's a primitive (→ `ui/`); if it's used once it lives at the top level.
-- **Purpose-named subfolders** are fine when several files share a clear technical role — e.g. `components/scripts/` for pre-hydration inline `<script>` seed components. This is distinct from the rejected `common/`: a `scripts/` folder names *what the files are*, not "miscellaneous."
+- **Purpose-named subfolders** are fine when several files share a clear technical role — e.g. `components/scripts/` for pre-hydration inline `<script>` seed components. This is distinct from the rejected `common/`: a `scripts/` folder names _what the files are_, not "miscellaneous."
 
 Conventions for filenames and casing live in the project's `AGENTS.md`. This skill doesn't impose one.

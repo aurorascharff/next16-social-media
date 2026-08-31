@@ -136,7 +136,7 @@ Composition crosses the boundary. A client component can accept server-rendered 
 
 ### Pass server children resolved values, not promises
 
-Prefer passing plain values (strings, IDs, resolved data) to a server child. A server component *can* `await` a promise prop, but resolve it in the parent instead — pass an unresolved promise down only to a *client* component that reads it with `use()` (see above). When a parent already has the data from its own query, pass it as a prop instead of having the child refetch.
+Prefer passing plain values (strings, IDs, resolved data) to a server child. A server component _can_ `await` a promise prop, but resolve it in the parent instead — pass an unresolved promise down only to a _client_ component that reads it with `use()` (see above). When a parent already has the data from its own query, pass it as a prop instead of having the child refetch.
 
 ```tsx
 // Right — parent fetches the list, passes each item
@@ -166,7 +166,7 @@ When a client component needs server data but should manage its own loading (a s
 // page: pass the unresolved promise, wrap in Suspense
 <Suspense fallback={<TagListSkeleton />}>
   <TagPicker itemsPromise={getTags()} />
-</Suspense>;
+</Suspense>
 
 // TagPicker ('use client'): const items = use(itemsPromise);  // itemsPromise: Promise<Tag[]>
 ```

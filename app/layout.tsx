@@ -14,12 +14,12 @@ import { ThemeProvider } from '@/components/theme/theme-provider';
 import { Toaster } from '@/components/toaster';
 import { AnimatedSuspense } from '@/components/ui/animated-suspense';
 import ErrorBoundary from '@/components/ui/error-boundary';
-import { getUnreadNotificationCount } from '@/features/notifications/notifications-queries';
 import { TrendingTags, TrendingTagsSkeleton } from '@/features/tag/components/trending-tags';
 import { WhoToFollow, WhoToFollowSkeleton } from '@/features/user/components/who-to-follow';
 import { UNREAD_KEY } from '@/lib/swr';
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import { getUnreadNotificationCount } from '@/features/activity/notifications-queries';
 
 export const viewport: Viewport = {
   themeColor: [

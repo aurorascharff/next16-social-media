@@ -15,10 +15,12 @@ Pages in `app/` import feature components and place `<Suspense>` boundaries. The
 Type page and layout functions with the auto-generated `PageProps<'/route'>` / `LayoutProps<'/route'>` helpers — no import, regenerated on `next dev` / `next build` / `next typegen`. See [route type helpers](https://preview.nextjs.org/docs/app/api-reference/config/typescript#route-type-helpers).
 
 ```tsx
-export default function PostPage({ params }: PageProps<'/post/[id]'>) { /* ... */ }
+export default function PostPage({ params }: PageProps<'/post/[id]'>) {
+  /* ... */
+}
 ```
 
-Don't hand-write `{ params: Promise<{ id: string }> }` — the generated types stay in sync with the route (catch-all, optional segments). Route handlers use `RouteContext<'/api/...'>`. `typedRoutes: true` is a *separate* feature (statically-typed `href`s), not the source of these helpers.
+Don't hand-write `{ params: Promise<{ id: string }> }` — the generated types stay in sync with the route (catch-all, optional segments). Route handlers use `RouteContext<'/api/...'>`. `typedRoutes: true` is a _separate_ feature (statically-typed `href`s), not the source of these helpers.
 
 ## Keep pages synchronous
 
