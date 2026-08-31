@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { Crossfade } from '@/components/ui/crossfade';
+import { AnimatedSuspense } from '@/components/ui/animated-suspense';
 import ErrorBoundary from '@/components/ui/error-boundary';
 import { PageHeader } from '@/components/ui/page-header';
 import { Section, SectionHeader } from '@/components/ui/section';
@@ -30,35 +30,31 @@ export default function DropPage({ params }: PageProps<'/drop/[id]'>) {
   return (
     <div>
       <PageHeader back title="Drop" />
-      <Suspense fallback={<DropDetailSkeleton />}>
-        <Crossfade>
-          {params.then(({ id }) => (
-            <>
-              <DropDetail id={id} />
-              <Section className="p-4 sm:p-5">
-                <ReplyComposerForm
-                  dropId={id}
-                  avatar={
-                    <Suspense fallback={<UserAvatarSkeleton size="md" />}>
-                      <CurrentUserAvatar />
-                    </Suspense>
-                  }
-                />
-              </Section>
-              <section>
-                <SectionHeader>Replies</SectionHeader>
-                <ErrorBoundary title="Replies didn’t load">
-                  <Suspense fallback={<RepliesSkeleton />}>
-                    <Crossfade>
-                      <Replies id={id} />
-                    </Crossfade>
+      <AnimatedSuspense fallback={<DropDetailSkeleton />}>
+        {params.then(({ id }) => (
+          <>
+            <DropDetail id={id} />
+            <Section className="p-4 sm:p-5">
+              <ReplyComposerForm
+                dropId={id}
+                avatar={
+                  <Suspense fallback={<UserAvatarSkeleton size="md" />}>
+                    <CurrentUserAvatar />
                   </Suspense>
-                </ErrorBoundary>
-              </section>
-            </>
-          ))}
-        </Crossfade>
-      </Suspense>
+                }
+              />
+            </Section>
+            <section>
+              <SectionHeader>Replies</SectionHeader>
+              <ErrorBoundary title="Replies didn’t load">
+                <AnimatedSuspense fallback={<RepliesSkeleton />}>
+                  <Replies id={id} />
+                </AnimatedSuspense>
+              </ErrorBoundary>
+            </section>
+          </>
+        ))}
+      </AnimatedSuspense>
     </div>
   );
 }

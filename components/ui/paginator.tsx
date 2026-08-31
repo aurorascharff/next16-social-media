@@ -1,7 +1,7 @@
 'use client';
 
 import { Suspense, use, useState, useTransition, type ReactNode } from 'react';
-import { Crossfade } from '@/components/ui/crossfade';
+import { AnimatedSuspense } from '@/components/ui/animated-suspense';
 
 export type Page = { node: ReactNode; hasMore: boolean };
 
@@ -34,10 +34,14 @@ export function Paginator({ initialPage, renderPage, skeleton }: Props) {
         const content = (
           <PageContent page={page} isLast={i === pages.length - 1} isPending={isPending} onLoadMore={loadMore} />
         );
-        return (
+        return i === 0 ? (
           <Suspense key={i} fallback={skeleton}>
-            {i === 0 ? content : <Crossfade>{content}</Crossfade>}
+            {content}
           </Suspense>
+        ) : (
+          <AnimatedSuspense key={i} fallback={skeleton}>
+            {content}
+          </AnimatedSuspense>
         );
       })}
     </>

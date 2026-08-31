@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { Crossfade } from '@/components/ui/crossfade';
+import { AnimatedSuspense } from '@/components/ui/animated-suspense';
 import { RefreshButton } from '@/components/ui/refresh-button';
 import { TabsSkeleton } from '@/components/ui/tabs';
 import { DropComposer } from '@/features/drop/components/composer';
@@ -32,15 +32,13 @@ export default function HomePage({ searchParams }: PageProps<'/'>) {
       </div>
       <DropComposer />
       <div className="transition-opacity group-has-data-pending/tabs:opacity-50">
-        <Suspense fallback={<DropListSkeleton />}>
-          <Crossfade>
-            {searchParams.then(sp => {
-              const tab = parseTab(sp.tab);
-              const page = parsePage(sp.page);
-              return tab === 'discover' ? <DiscoverFeed /> : <Feed page={page} />;
-            })}
-          </Crossfade>
-        </Suspense>
+        <AnimatedSuspense fallback={<DropListSkeleton />}>
+          {searchParams.then(sp => {
+            const tab = parseTab(sp.tab);
+            const page = parsePage(sp.page);
+            return tab === 'discover' ? <DiscoverFeed /> : <Feed page={page} />;
+          })}
+        </AnimatedSuspense>
       </div>
     </div>
   );

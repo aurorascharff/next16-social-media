@@ -1,5 +1,4 @@
-import { Suspense } from 'react';
-import { Crossfade } from '@/components/ui/crossfade';
+import { AnimatedSuspense } from '@/components/ui/animated-suspense';
 import { PageHeader } from '@/components/ui/page-header';
 import { TabsSkeleton } from '@/components/ui/tabs';
 import { DropListSkeleton } from '@/features/drop/components/drop';
@@ -30,28 +29,22 @@ export default function ProfilePage({ params, searchParams }: PageProps<'/u/[han
   return (
     <div className="group/tabs">
       <PageHeader back title="Profile" />
-      <Suspense fallback={<ProfileHeaderSkeleton />}>
-        <Crossfade>
-          {params.then(({ handle }) => (
-            <ProfileHeader handle={handle} />
-          ))}
-        </Crossfade>
-      </Suspense>
-      <Suspense fallback={<TabsSkeleton />}>
-        <Crossfade>
-          {Promise.all([params, searchParams]).then(([{ handle }, sp]) => (
-            <ProfileTabs handle={handle} active={parseTab(sp.tab)} />
-          ))}
-        </Crossfade>
-      </Suspense>
+      <AnimatedSuspense fallback={<ProfileHeaderSkeleton />}>
+        {params.then(({ handle }) => (
+          <ProfileHeader handle={handle} />
+        ))}
+      </AnimatedSuspense>
+      <AnimatedSuspense fallback={<TabsSkeleton />}>
+        {Promise.all([params, searchParams]).then(([{ handle }, sp]) => (
+          <ProfileTabs handle={handle} active={parseTab(sp.tab)} />
+        ))}
+      </AnimatedSuspense>
       <div className="transition-opacity group-has-data-pending/tabs:opacity-50">
-        <Suspense fallback={<DropListSkeleton />}>
-          <Crossfade>
-            {Promise.all([params, searchParams]).then(([{ handle }, sp]) => (
-              <ProfileFeed handle={handle} tab={parseTab(sp.tab)} />
-            ))}
-          </Crossfade>
-        </Suspense>
+        <AnimatedSuspense fallback={<DropListSkeleton />}>
+          {Promise.all([params, searchParams]).then(([{ handle }, sp]) => (
+            <ProfileFeed handle={handle} tab={parseTab(sp.tab)} />
+          ))}
+        </AnimatedSuspense>
       </div>
     </div>
   );

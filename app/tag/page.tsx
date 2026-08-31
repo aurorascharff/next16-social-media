@@ -1,5 +1,4 @@
-import { Suspense } from 'react';
-import { Crossfade } from '@/components/ui/crossfade';
+import { AnimatedSuspense } from '@/components/ui/animated-suspense';
 import { PageHeader } from '@/components/ui/page-header';
 import { TagsList, TagsListSkeleton } from '@/features/tag/components/tags-list';
 import type { Metadata } from 'next';
@@ -14,11 +13,9 @@ export default function TagsPage() {
   return (
     <div>
       <PageHeader back title="Trending Tags" />
-      <Suspense fallback={<TagsListSkeleton />}>
-        <Crossfade>
-          <TagsList />
-        </Crossfade>
-      </Suspense>
+      <AnimatedSuspense fallback={<TagsListSkeleton />}>
+        <TagsList />
+      </AnimatedSuspense>
     </div>
   );
 }

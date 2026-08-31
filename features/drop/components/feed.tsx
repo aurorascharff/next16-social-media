@@ -1,5 +1,4 @@
-import { Suspense } from 'react';
-import { Crossfade } from '@/components/ui/crossfade';
+import { AnimatedSuspense } from '@/components/ui/animated-suspense';
 import { EmptyState } from '@/components/ui/empty-state';
 import { LoadMore } from '@/components/ui/load-more';
 import { Paginator } from '@/components/ui/paginator';
@@ -40,11 +39,9 @@ export async function Feed({ page = 1 }: { page?: number }) {
         return p === 1 ? (
           <FeedPage key={p} page={p} isLast={isLast} />
         ) : (
-          <Suspense key={p} fallback={<DropListSkeleton count={3} />}>
-            <Crossfade>
-              <FeedPage page={p} isLast={isLast} />
-            </Crossfade>
-          </Suspense>
+          <AnimatedSuspense key={p} fallback={<DropListSkeleton count={3} />}>
+            <FeedPage page={p} isLast={isLast} />
+          </AnimatedSuspense>
         );
       })}
     </ul>

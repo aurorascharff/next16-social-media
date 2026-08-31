@@ -12,7 +12,7 @@ import { NavLinkScript } from '@/components/scripts/nav-link-script';
 import { Sidebar } from '@/components/sidebar';
 import { ThemeProvider } from '@/components/theme/theme-provider';
 import { Toaster } from '@/components/toaster';
-import { Crossfade } from '@/components/ui/crossfade';
+import { AnimatedSuspense } from '@/components/ui/animated-suspense';
 import ErrorBoundary from '@/components/ui/error-boundary';
 import { getUnreadNotificationCount } from '@/features/notifications/notifications-queries';
 import { TrendingTags, TrendingTagsSkeleton } from '@/features/tag/components/trending-tags';
@@ -61,18 +61,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <MainColumn>{children}</MainColumn>
                 <RightSidebar>
                   <ErrorBoundary title="Tags unavailable" compact>
-                    <Suspense fallback={<TrendingTagsSkeleton />}>
-                      <Crossfade>
-                        <TrendingTags />
-                        <ErrorBoundary title="No suggestions" compact>
-                          <Suspense fallback={<WhoToFollowSkeleton />}>
-                            <Crossfade>
-                              <WhoToFollow />
-                            </Crossfade>
-                          </Suspense>
-                        </ErrorBoundary>
-                      </Crossfade>
-                    </Suspense>
+                    <AnimatedSuspense fallback={<TrendingTagsSkeleton />}>
+                      <TrendingTags />
+                      <ErrorBoundary title="No suggestions" compact>
+                        <AnimatedSuspense fallback={<WhoToFollowSkeleton />}>
+                          <WhoToFollow />
+                        </AnimatedSuspense>
+                      </ErrorBoundary>
+                    </AnimatedSuspense>
                   </ErrorBoundary>
                 </RightSidebar>
               </AppGrid>

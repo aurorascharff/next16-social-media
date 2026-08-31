@@ -1,5 +1,4 @@
-import { Suspense } from 'react';
-import { Crossfade } from '@/components/ui/crossfade';
+import { AnimatedSuspense } from '@/components/ui/animated-suspense';
 import { PageHeader } from '@/components/ui/page-header';
 import { DropListSkeleton } from '@/features/drop/components/drop';
 import { TagFeed } from '@/features/tag/components/tag-feed';
@@ -22,20 +21,16 @@ export default function TagPage({ params }: PageProps<'/tag/[tag]'>) {
   return (
     <div>
       <PageHeader back title="Tag" />
-      <Suspense fallback={<TagHeaderSkeleton />}>
-        <Crossfade>
-          {params.then(({ tag }) => (
-            <TagHeader tag={tag} />
-          ))}
-        </Crossfade>
-      </Suspense>
-      <Suspense fallback={<DropListSkeleton count={4} />}>
-        <Crossfade>
-          {params.then(({ tag }) => (
-            <TagFeed tag={tag} />
-          ))}
-        </Crossfade>
-      </Suspense>
+      <AnimatedSuspense fallback={<TagHeaderSkeleton />}>
+        {params.then(({ tag }) => (
+          <TagHeader tag={tag} />
+        ))}
+      </AnimatedSuspense>
+      <AnimatedSuspense fallback={<DropListSkeleton count={4} />}>
+        {params.then(({ tag }) => (
+          <TagFeed tag={tag} />
+        ))}
+      </AnimatedSuspense>
     </div>
   );
 }

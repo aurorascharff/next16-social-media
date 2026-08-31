@@ -1,5 +1,4 @@
-import { Suspense } from 'react';
-import { Crossfade } from '@/components/ui/crossfade';
+import { AnimatedSuspense } from '@/components/ui/animated-suspense';
 import { PageHeader } from '@/components/ui/page-header';
 import { BookmarksFeed } from '@/features/drop/components/bookmarks-feed';
 import { DropListSkeleton } from '@/features/drop/components/drop';
@@ -16,11 +15,9 @@ export default function BookmarksPage() {
   return (
     <div>
       <PageHeader back title="Bookmarks" />
-      <Suspense fallback={<DropListSkeleton count={3} />}>
-        <Crossfade>
-          <BookmarksFeed />
-        </Crossfade>
-      </Suspense>
+      <AnimatedSuspense fallback={<DropListSkeleton count={3} />}>
+        <BookmarksFeed />
+      </AnimatedSuspense>
     </div>
   );
 }
