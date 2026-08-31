@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { AnimatedSuspense } from '@/components/ui/animated-suspense';
 import { PageHeader } from '@/components/ui/page-header';
 import { RefreshButton } from '@/components/ui/refresh-button';
 import { MarkNotificationsRead } from '@/features/notifications/components/mark-notifications-read';
@@ -19,9 +19,9 @@ export default function NotificationsPage() {
         <RefreshButton label="Refresh activity" />
       </PageHeader>
       <MarkNotificationsRead />
-      <Suspense fallback={<NotificationListSkeleton />}>
+      <AnimatedSuspense fallback={<NotificationListSkeleton />}>
         <NotificationList />
-      </Suspense>
+      </AnimatedSuspense>
     </div>
   );
 }

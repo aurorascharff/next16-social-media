@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { AnimatedSuspense } from '@/components/ui/animated-suspense';
 import { RefreshButton } from '@/components/ui/refresh-button';
 import { TabsSkeleton } from '@/components/ui/tabs';
@@ -26,9 +25,9 @@ export default function HomePage({ searchParams }: PageProps<'/'>) {
           <h1 className="text-lg font-bold tracking-tight">Home</h1>
           <RefreshButton label="Refresh feed" />
         </div>
-        <Suspense fallback={<TabsSkeleton />}>
+        <AnimatedSuspense fallback={<TabsSkeleton />}>
           <FeedTabs />
-        </Suspense>
+        </AnimatedSuspense>
       </div>
       <DropComposer />
       <div className="transition-opacity group-has-data-pending/tabs:opacity-50">

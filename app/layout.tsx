@@ -75,7 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <MobileTabBar />
             </SWRConfig>
             <div className="demo-toggles fixed top-4 right-4 z-50 hidden items-start gap-2 sm:flex lg:top-6 lg:right-6">
-              <Suspense fallback={null}>
+              <Suspense>
                 <DemoToolbar />
               </Suspense>
             </div>

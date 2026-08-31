@@ -60,7 +60,7 @@ export function Sidebar() {
           <Bookmark className="h-5 w-5" />
           <span className="hidden lg:inline">Bookmarks</span>
         </NavLink>
-        <NavLink href="/notifications" aria-label="Activity" className={sidebarLinkClass}>
+        <NavLink href="/activity" aria-label="Activity" className={sidebarLinkClass}>
           <Bell className="h-5 w-5" />
           <span className="hidden lg:inline">Activity</span>
           <NotificationsBadge />
