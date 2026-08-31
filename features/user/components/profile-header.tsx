@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { AnimatedSuspense } from '@/components/ui/animated-suspense';
 import { Skeleton } from '@/components/ui/skeleton';
 import { FollowButton } from '@/features/user/components/follow-button';
 import { UserAvatar, UserAvatarSkeleton } from '@/features/user/components/user-avatar';
@@ -19,9 +19,9 @@ export async function ProfileHeader({ handle }: { handle: string }) {
             <UserAvatar handle={user.handle} size="lg" />
           </div>
           <div className="flex h-20 items-end sm:h-24">
-            <Suspense fallback={<Skeleton className="h-8 w-28 rounded-full" />}>
+            <AnimatedSuspense fallback={<Skeleton className="h-8 w-28 rounded-full" />}>
               <ProfileFollowButton handle={handle} />
-            </Suspense>
+            </AnimatedSuspense>
           </div>
         </div>
         <div className="mt-3 flex flex-col gap-3">

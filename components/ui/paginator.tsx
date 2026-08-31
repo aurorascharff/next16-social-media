@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, use, useState, useTransition, type ReactNode } from 'react';
+import { use, useState, useTransition, type ReactNode } from 'react';
 import { AnimatedSuspense } from '@/components/ui/animated-suspense';
 
 export type Page = { node: ReactNode; hasMore: boolean };
@@ -35,9 +35,9 @@ export function Paginator({ initialPage, renderPage, skeleton }: Props) {
           <PageContent page={page} isLast={i === pages.length - 1} isPending={isPending} onLoadMore={loadMore} />
         );
         return i === 0 ? (
-          <Suspense key={i} fallback={skeleton}>
+          <AnimatedSuspense key={i} fallback={skeleton}>
             {content}
-          </Suspense>
+          </AnimatedSuspense>
         ) : (
           <AnimatedSuspense key={i} fallback={skeleton}>
             {content}

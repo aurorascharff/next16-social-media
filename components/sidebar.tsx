@@ -1,5 +1,4 @@
 import { Bell, Bookmark, Home, Search, User } from 'lucide-react';
-import { Suspense } from 'react';
 import { ThemeToggle } from '@/components/theme/theme-toggle';
 import { DropMark } from '@/components/ui/drop-mark';
 import ErrorBoundary from '@/components/ui/error-boundary';
@@ -13,6 +12,7 @@ import { NotificationsBadge } from '@/features/notifications/components/notifica
 import { CurrentUserAvatar, UserAvatarSkeleton } from '@/features/user/components/user-avatar';
 import { UserSwitcher } from '@/features/user/components/user-switcher';
 import { getAllUsers, getCurrentUser, getCurrentUserHandle } from '@/features/user/user-queries';
+import { AnimatedSuspense } from './ui/animated-suspense';
 import type { Route } from 'next';
 
 const sidebarLinkClass =
@@ -42,9 +42,9 @@ export function Sidebar() {
       </div>
       <div className="hidden lg:block">
         <ErrorBoundary title="Your profile is offline" compact>
-          <Suspense fallback={<SidebarProfilePillSkeleton />}>
+          <AnimatedSuspense fallback={<SidebarProfilePillSkeleton />}>
             <SidebarProfilePill />
-          </Suspense>
+          </AnimatedSuspense>
         </ErrorBoundary>
       </div>
       <nav className="flex flex-1 flex-col gap-1.5 text-sm font-medium">
@@ -65,7 +65,7 @@ export function Sidebar() {
           <span className="hidden lg:inline">Activity</span>
           <NotificationsBadge />
         </NavLink>
-        <Suspense
+        <AnimatedSuspense
           fallback={
             <NavLinkSkeleton className={sidebarLinkClass}>
               <User className="h-5 w-5" />
@@ -79,13 +79,13 @@ export function Sidebar() {
               <span className="hidden lg:inline">Profile</span>
             </NavLink>
           ))}
-        </Suspense>
+        </AnimatedSuspense>
         <div className="hidden pt-2 lg:block">
           <NewDropModal
             avatar={
-              <Suspense fallback={<UserAvatarSkeleton size="md" />}>
+              <AnimatedSuspense fallback={<UserAvatarSkeleton size="md" />}>
                 <CurrentUserAvatar />
-              </Suspense>
+              </AnimatedSuspense>
             }
           />
         </div>

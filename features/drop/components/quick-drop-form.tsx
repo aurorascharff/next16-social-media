@@ -1,9 +1,10 @@
 'use client';
 
 import { Bold, Code2, Eye, Hash, Italic, PenLine } from 'lucide-react';
-import { Suspense, useRef, useState, useTransition } from 'react';
+import { useRef, useState, useTransition } from 'react';
 import { toast } from 'sonner';
 import { Boundary } from '@/components/internal/boundary';
+import { AnimatedSuspense } from '@/components/ui/animated-suspense';
 import { Button } from '@/components/ui/button';
 import { ToolbarButton } from '@/features/drop/components/composer-toolbar';
 import { DropPreview, PreviewSkeleton, type Preview } from '@/features/drop/components/drop-preview';
@@ -69,7 +70,7 @@ export function QuickDropForm({ avatar }: Props) {
                   }
                 }}
                 className={cn(
-                  'placeholder-gray field-sizing-content col-start-1 row-start-1 min-h-20 w-full resize-none border-0 bg-transparent pt-1.5 pr-9 text-base leading-relaxed focus:ring-0 focus:outline-none',
+                  'placeholder-gray col-start-1 row-start-1 field-sizing-content min-h-20 w-full resize-none border-0 bg-transparent pt-1.5 pr-9 text-base leading-relaxed focus:ring-0 focus:outline-none',
                   mode === 'preview' && 'invisible',
                 )}
               />
@@ -77,9 +78,9 @@ export function QuickDropForm({ avatar }: Props) {
                 aria-hidden={mode === 'write'}
                 className={cn('col-start-1 row-start-1 pt-1.5 pr-9', mode === 'write' && 'invisible')}
               >
-                <Suspense key={preview?.body} fallback={<PreviewSkeleton />}>
+                <AnimatedSuspense key={preview?.body} fallback={<PreviewSkeleton />}>
                   <DropPreview preview={preview} />
-                </Suspense>
+                </AnimatedSuspense>
               </div>
               <div className="absolute top-1 right-0">
                 {mode === 'write' ? (

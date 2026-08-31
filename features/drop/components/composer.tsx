@@ -1,5 +1,6 @@
 import { Plus } from 'lucide-react';
-import { Suspense } from 'react';
+
+import { AnimatedSuspense } from '@/components/ui/animated-suspense';
 import { NewDropModal } from '@/features/drop/components/composer-modal';
 import { QuickDropForm } from '@/features/drop/components/quick-drop-form';
 import { CurrentUserAvatar, UserAvatarSkeleton } from '@/features/user/components/user-avatar';
@@ -9,9 +10,9 @@ export function DropComposer() {
     <>
       <QuickDropForm
         avatar={
-          <Suspense fallback={<UserAvatarSkeleton size="md" />}>
+          <AnimatedSuspense fallback={<UserAvatarSkeleton size="md" />}>
             <CurrentUserAvatar />
-          </Suspense>
+          </AnimatedSuspense>
         }
       />
       <div className="fixed right-4 bottom-[calc(4rem+env(safe-area-inset-bottom)+0.75rem)] z-50 sm:right-6 sm:bottom-6 lg:hidden">
@@ -26,9 +27,9 @@ export function DropComposer() {
             </span>
           }
           avatar={
-            <Suspense fallback={<UserAvatarSkeleton size="md" />}>
+            <AnimatedSuspense fallback={<UserAvatarSkeleton size="md" />}>
               <CurrentUserAvatar />
-            </Suspense>
+            </AnimatedSuspense>
           }
         />
       </div>

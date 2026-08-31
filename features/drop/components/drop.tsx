@@ -1,5 +1,5 @@
 import { Repeat2 } from 'lucide-react';
-import { Suspense } from 'react';
+import { AnimatedSuspense } from '@/components/ui/animated-suspense';
 import { CodeBlock } from '@/components/ui/code-block';
 import { HoverPrefetchLink } from '@/components/ui/hover-prefetch-link';
 import { PrefetchLink } from '@/components/ui/prefetch-link';
@@ -30,15 +30,11 @@ export async function Drop({ drop, compact = false, repostedBy }: Props) {
   };
   return (
     <article className="group/drop border-divider/70 dark:border-divider-dark/70 hover:bg-card/40 dark:hover:bg-card-dark/40 relative border-b transition-colors">
-      <PrefetchLink
-        href={href}
-        aria-label="Open drop"
-        className="absolute inset-0 z-10"
-      />
+      <PrefetchLink href={href} aria-label="Open drop" className="absolute inset-0 z-10" />
       {repostedBy ? (
-        <Suspense fallback={<ReposterSkeleton />}>
+        <AnimatedSuspense fallback={<ReposterSkeleton />}>
           <Reposter handle={repostedBy} />
-        </Suspense>
+        </AnimatedSuspense>
       ) : null}
       <div className="relative flex gap-3 px-4 py-4 sm:px-5">
         <HoverPrefetchLink href={`/u/${drop.authorHandle}` as Route} className="relative z-20 shrink-0">
