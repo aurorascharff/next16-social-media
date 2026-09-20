@@ -26,7 +26,7 @@ The architecture follows the [Next.js App Architecture](https://github.com/auror
 
 ## Getting started
 
-Drop runs on Postgres, so set `DATABASE_URL` in `.env.local` and then run the following commands.
+Drop runs on Postgres. Copy `.env.sample` to `.env.local` and update `DATABASE_URL` for your database. Local Postgres instances without TLS need `?sslmode=disable`.
 
 ```bash
 pnpm install
