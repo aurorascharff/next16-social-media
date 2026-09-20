@@ -20,13 +20,6 @@ function extractTags(body: string): string[] {
   return Array.from(tags);
 }
 
-const BANNED_WORDS = ['fuck', 'shit', 'asshole', 'bitch', 'bastard', 'dick', 'cunt', 'slut'];
-
-function moderate(body: string): string | null {
-  const hit = BANNED_WORDS.find(word => new RegExp(`\\b${word}\\b`, 'i').test(body));
-  return hit ? 'Keep it friendly. That post looks a little too spicy to publish.' : null;
-}
-
 const postDropSchema = z.object({
   body: z
     .string()
@@ -39,10 +32,6 @@ function validateBody(raw: FormDataEntryValue | null) {
   const parsed = postDropSchema.safeParse({ body: raw });
   if (!parsed.success) {
     return { error: parsed.error.issues[0].message, ok: false as const };
-  }
-  const flagged = moderate(parsed.data.body);
-  if (flagged) {
-    return { error: flagged, ok: false as const };
   }
   return { body: parsed.data.body, ok: true as const };
 }
