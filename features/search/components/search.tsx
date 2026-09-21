@@ -1,6 +1,7 @@
 'use client';
 
 import { Search as SearchIcon } from 'lucide-react';
+import Form from 'next/form';
 import { useRouter } from 'next/navigation';
 import { useId, useRef, useTransition } from 'react';
 import { Boundary } from '@/components/internal/boundary';
@@ -23,7 +24,7 @@ export function Search({ children }: { children: React.ReactNode }) {
   return (
     <Boundary label="Search">
       <Section className="px-4 py-3 sm:px-5">
-        <div className="relative">
+        <Form action="/search" replace scroll={false} className="relative">
           <SearchIcon className="text-gray pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
           <input
             ref={inputRef}
@@ -44,7 +45,7 @@ export function Search({ children }: { children: React.ReactNode }) {
             className={inputClass}
           />
           <SeedFromSearchParam targetId={inputId} param="q" />
-        </div>
+        </Form>
       </Section>
       <div
         className="transition-opacity duration-200 ease-out data-pending:opacity-60"
